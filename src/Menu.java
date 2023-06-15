@@ -62,11 +62,12 @@ public class Menu {
     }
 
     public void quemarDatos(JTextArea jt){
-        platos.add(new Plato("Plato1", 10.99, 500, 20));
-        platos.add(new Plato("Plato2", 12.99, 800, 30));
-        platos.add(new Plato("Plato3", 8.99, 300, 15));
-        platos.add(new Plato("Plato4", 15.99, 600, 40));
-        platos.add(new Plato("Plato5", 9.99, 400, 25));
+
+        platos.add(new Plato("Hamburguesa", 10.99, 500, 20));
+        platos.add(new Plato("Pizza", 12.99, 800, 30));
+        platos.add(new Plato("Desayuno", 8.99, 300, 15));
+        platos.add(new Plato("Almuerzo", 15.99, 600, 40));
+        platos.add(new Plato("Cafe", 9.99, 400, 25));
 
         jt.setText(platos.toString());
     }

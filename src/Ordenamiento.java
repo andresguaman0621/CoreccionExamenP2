@@ -78,4 +78,85 @@ public class Ordenamiento {
     }
 
 
+    public Plato buscarPorNombre(ArrayList<Plato> platos, String nombre) {
+        int izquierda = 0;
+        int derecha = platos.size() - 1;
+
+        while (izquierda <= derecha) {
+            int medio = izquierda + (derecha - izquierda) / 2;
+            int comparacion = platos.get(medio).getNombre().compareToIgnoreCase(nombre);
+
+            if (comparacion == 0) {
+                return platos.get(medio);
+            }
+
+            if (comparacion < 0) {
+                izquierda = medio + 1;
+            } else {
+                derecha = medio - 1;
+            }
+        }
+
+        return null;
+    }
+
+    public Plato buscarPorPrecio(ArrayList<Plato> platos, double precio) {
+        int centro, primero, ultimo;
+        double valorCentro;
+        primero = 0;
+        ultimo = platos.size() - 1;
+        while (primero <= ultimo) {
+            centro = (primero + ultimo) / 2;
+            valorCentro = platos.get(centro).getPrecio();
+            if (precio == valorCentro) {
+                return platos.get(centro);
+            } else if (precio < valorCentro) {
+                ultimo = centro - 1;
+            } else {
+                primero = centro + 1;
+            }
+        }
+        return null;
+    }
+
+
+    public Plato buscarPorCalorias(ArrayList<Plato> platos, double calorias) {
+        int centro, primero, ultimo;
+        double valorCentro;
+        primero = 0;
+        ultimo = platos.size() - 1;
+        while (primero <= ultimo) {
+            centro = (primero + ultimo) / 2;
+            valorCentro = platos.get(centro).getCalorias();
+            if (calorias == valorCentro) {
+                return platos.get(centro);
+            } else if (calorias < valorCentro) {
+                ultimo = centro - 1;
+            } else {
+                primero = centro + 1;
+            }
+        }
+        return null;
+    }
+
+
+    public Plato buscarPorTiempo(ArrayList<Plato> platos, double tiempo) {
+        int centro, primero, ultimo;
+        double valorCentro;
+        primero = 0;
+        ultimo = platos.size() - 1;
+        while (primero <= ultimo) {
+            centro = (primero + ultimo) / 2;
+            valorCentro = platos.get(centro).getTiempoPreparacion();
+            if (tiempo == valorCentro) {
+                return platos.get(centro);
+            } else if (tiempo < valorCentro) {
+                ultimo = centro - 1;
+            } else {
+                primero = centro + 1;
+            }
+        }
+        return null;
+    }
+
 }

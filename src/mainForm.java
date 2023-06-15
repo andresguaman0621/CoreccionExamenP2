@@ -103,8 +103,13 @@ public class mainForm extends JFrame {
                         if (opcion == JOptionPane.YES_OPTION) {
 
                             String texto = JOptionPane.showInputDialog(null, "Ingresa el nuevo nombre");
-                            platoModificar.setNombre(texto);
-                            JOptionPane.showMessageDialog(null,"El nombre se ha modificado");
+                            if(!texto.isEmpty()){
+                                platoModificar.setNombre(texto);
+                                JOptionPane.showMessageDialog(null,"El nombre se ha modificado");
+                            }else{
+                                JOptionPane.showMessageDialog(null,"NOMBRE NO VALIDO");
+                            }
+
 
 
                         } else if (opcion == JOptionPane.NO_OPTION) {
@@ -183,22 +188,42 @@ public class mainForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(comboBoxOrder.getSelectedIndex()==0){
                     String nombre = textBuscarPlatoOrden.getText();
-
+                    Plato plato3 = ord.buscarPorNombre(ordPorNombre, nombre);
+                    if (plato3 != null) {
+                        textAMostrar.setText(plato3.toString());
+                    }else{
+                        textAMostrar.setText("No existe un plato con ese nombre");
+                    }
 
                 }else if(comboBoxOrder.getSelectedIndex()==1){
-                    ordPorPrecio= ord.ordenarPorPrecio(m.getPlatos());
-                    textAMostrar.setText(ordPorPrecio.toString());
-                    buscarButton.setEnabled(true);
+                    double precio = Double.parseDouble(textBuscarPlatoOrden.getText());
+                    Plato plato3 = ord.buscarPorPrecio(ordPorPrecio, precio);
+                    if (plato3 != null) {
+                        textAMostrar.setText(plato3.toString());
+                    }else{
+                        textAMostrar.setText("No existe un plato con ese precio");
+                    }
 
                 }else if(comboBoxOrder.getSelectedIndex()==2){
-                    ordPorCalorias=ord.ordenarPorCalorias(m.getPlatos());
-                    textAMostrar.setText(ordPorCalorias.toString());
-                    buscarButton.setEnabled(true);
+                    double calorias = Double.parseDouble(textBuscarPlatoOrden.getText());
+                    Plato plato3 = ord.buscarPorCalorias(ordPorCalorias, calorias);
+                    if (plato3 != null) {
+                        textAMostrar.setText(plato3.toString());
+                    }else{
+                        textAMostrar.setText("No existe un plato con esa cantidade de calorias");
+                    }
+
                 }else if(comboBoxOrder.getSelectedIndex()==3){
-                    ordPorTiempoPreparacion=ord.ordenarPorTiempoPreparacion(m.getPlatos());
-                    textAMostrar.setText(ordPorTiempoPreparacion.toString());
-                    buscarButton.setEnabled(true);
+                    int tiempo = Integer.parseInt(textBuscarPlatoOrden.getText());
+                    Plato plato3 = ord.buscarPorTiempo(ordPorTiempoPreparacion, tiempo);
+                    if (plato3 != null) {
+                        textAMostrar.setText(plato3.toString());
+                    }else{
+                        textAMostrar.setText("No existe un plato con ese tiempo de preparacion");
+                    }
                 }
+
+                buscarButton.setEnabled(false);
             }
         });
     }
